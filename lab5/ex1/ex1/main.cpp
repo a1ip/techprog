@@ -35,7 +35,7 @@ int main()
 	return 0;
 }
 
-bool isOrthonormal(int* arr)
+bool isOrthonormal(int** arr)
 {
 	bool result = 1; //результат
 
