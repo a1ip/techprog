@@ -2,9 +2,7 @@
 // Лабораторная работа №5. Функции и массивы
 // Вариант - 5
 #include <iostream>
-#include <iomanip> //для setw()
 #include <locale>  //для кириллицы
-#include <math.h>  //для pow()
 
 using namespace std;
 
@@ -12,6 +10,9 @@ using namespace std;
 #define SY 3
 
 void clearScreen();
+
+void arrPrint(int* arr);
+int dotProduct(int* arr, int A, int B);
 bool isOrthonormal(int* arr);
 
 
@@ -24,54 +25,81 @@ int main()
 	cout << "Лабораторная работа 5: Функции и массивы" << endl;
 	cout << "----------------------------------------------" << endl;
 
-	int arr[SX][SY] = {
-						{1,1,1},
-						{0,1,0},
-						{0,0,1},
-					};
+	cout << "Исходная матрица: " << endl;
 
-	cout << isOrthonormal(&arr[0][0]);
+	int a[SX][SY] =	{
+		{1,0,0},
+		{0,1,0},
+		{0,0,2}
+	};
+
+	//Вывод
+	arrPrint(&a[0][0]);
+	
+	//Проверка на ортонормированность
+	cout << endl << isOrthonormal(&a[0][0]) << endl;
 
 	return 0;
 }
 
-bool isOrthonormal(int** arr)
+/*
+	Проверка массива на ортонормированность.
+	Вычисляет dotProduct - скалярное произведение пар строк массива arr
+	Возвращает 1 в случае, когда матрица ортонормирована.
+*/
+bool isOrthonormal(int* arr)
 {
-	bool result = 1; //результат
+	//Результат, который может быть опровергнут циклом условий
+	bool res = 1;
 
-	//Перебор матрицы по строкам
-	for (int j = 0; j < SY; j++) // для каждой строки
-	{
-		cout << "iter1: " << setw(10) << j << ": " << endl;
-		//сравнение
-		for (int jj = 0; jj < SY; jj++) //с каждой строкой
-		{	
-			cout << "iter2: " << setw(10) << jj << ": ";
-			if (jj !=j) //кроме самой себя
-			{
-				int scal = 0;
-				for (int i = 0; i < SX; i++)
+	//Два цикла для 2 строк
+	for (int i = 0; i < SX; i++)
+		for (int j = 0; j < SY; j++)
+		{
+			//для произведений 2-х разных строк
+			if (i != j)
 				{
-					scal += *(arr + i) + SY;
+					if (dotProduct(&arr[0], i, j) != 0)
+						res = 0;	//опровержение результата
 				}
-				cout << "scal " << " on " << j << " = " << scal << " | ";
-				if (scal != 0)
-					result *= 0;
-			}
-			else //и с собой
-			{
-				int scal = 0;
-				for (int i = 0; i < SX; i++)
+			//для произведений строки самой на себя
+			else
 				{
-					scal += *(arr + i) + SY;
+					if (dotProduct(&arr[0], i, j) != 1)
+						res = 0;	//опровержение результата
 				}
-				if (scal != 1)
-					result *= 0;
-			}
-			cout << endl;
 		}
+
+	return res;
+}
+
+/*
+	Вычисление скалярного произведения для пар строк - A и B
+	Возвращает целое число
+*/
+int dotProduct(int* arr, int A, int B)
+{
+	//Результат
+	int res = 0;
+
+	for (int i = 0; i < SX; i++) //для всех элементов строки
+		res += *(arr + A*SX + i) * *(arr + B*SX + i); //складывать их произведения
+	
+	//Результат - сумма произведений всех элементов строки
+	return res;
+}
+
+/*
+	Вывод массива arr на печать
+*/
+void arrPrint(int* arr) 
+{
+	for (int i = 0; i < SX; i++) {
+		for (int j = 0; j < SY; j++) {
+			cout << *(arr + i*SY + j) << ' ';
+		}
+		cout << endl;
 	}
-	return result;
 }
 
 //Функция очистки экрана с приглашением для продолжения работы
