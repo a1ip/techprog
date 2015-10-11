@@ -1,0 +1,18 @@
+﻿Build started 12.10.2015 1:29:35.
+     1>Project "X:\_URFU\TECHPROG\lab8\ex1\ex1\ex1.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\ex1.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>main.cpp(42): error C2536: 'human::human::first_name' : cannot specify explicit initializer for arrays
+                 main.cpp(33) : see declaration of 'human::first_name'
+     1>main.cpp(42): error C2536: 'human::human::last_name' : cannot specify explicit initializer for arrays
+                 main.cpp(34) : see declaration of 'human::last_name'
+     1>main.cpp(42): error C2536: 'human::human::middle_name' : cannot specify explicit initializer for arrays
+                 main.cpp(35) : see declaration of 'human::middle_name'
+     1>Done Building Project "X:\_URFU\TECHPROG\lab8\ex1\ex1\ex1.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.27
