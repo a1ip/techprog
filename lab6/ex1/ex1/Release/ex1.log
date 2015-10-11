@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+﻿Build started 05.10.2015 12:36:04.
+     1>Project "C:\Users\Александр\Desktop\TECHPROG\lab6\ex1\ex1\ex1.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\ex1.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         ex1.vcxproj -> C:\Users\Александр\Desktop\TECHPROG\lab6\ex1\Release\ex1.exe
+       FinalizeBuildStatus:
+         Deleting file "Release\ex1.unsuccessfulbuild".
+         Touching "Release\ex1.lastbuildstate".
+     1>Done Building Project "C:\Users\Александр\Desktop\TECHPROG\lab6\ex1\ex1\ex1.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.48
+=======
 ﻿Build started 05.10.2015 2:20:30.
      1>Project "X:\_URFU\TECHPROG\lab6\ex1\ex1\ex1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
@@ -22,3 +41,4 @@
 Build succeeded.
 
 Time Elapsed 00:00:00.61
+>>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2

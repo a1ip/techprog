@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+﻿Build started 28.09.2015 12:34:33.
+     1>Project "C:\Users\Александр\Desktop\TECHPROG\lab4\ex1\ex1\ex1.vcxproj" on node 2 (build target(s)).
+=======
 ﻿Build started 27.09.2015 19:10:05.
      1>Project "X:\_URFU\TECHPROG\lab4\ex1\ex1\ex1.vcxproj" on node 2 (build target(s)).
+>>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
      1>InitializeBuildStatus:
          Creating "Release\ex1.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -19,4 +24,8 @@
 
 Build succeeded.
 
+<<<<<<< HEAD
+Time Elapsed 00:00:00.53
+=======
 Time Elapsed 00:00:00.57
+>>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
