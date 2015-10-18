@@ -1,18 +1,25 @@
-﻿Build started 12.10.2015 1:29:35.
+﻿Build started 18.10.2015 1:08:37.
      1>Project "X:\_URFU\TECHPROG\lab8\ex1\ex1\ex1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Release\ex1.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Release\ex1.unsuccessfulbuild".
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>main.cpp(42): error C2536: 'human::human::first_name' : cannot specify explicit initializer for arrays
-                 main.cpp(33) : see declaration of 'human::first_name'
-     1>main.cpp(42): error C2536: 'human::human::last_name' : cannot specify explicit initializer for arrays
-                 main.cpp(34) : see declaration of 'human::last_name'
-     1>main.cpp(42): error C2536: 'human::human::middle_name' : cannot specify explicit initializer for arrays
-                 main.cpp(35) : see declaration of 'human::middle_name'
-     1>Done Building Project "X:\_URFU\TECHPROG\lab8\ex1\ex1\ex1.vcxproj" (build target(s)) -- FAILED.
+     1>main.cpp(78): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : see declaration of 'fopen'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"X:\_URFU\TECHPROG\lab8\ex1\Release\ex1.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\ex1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"X:\_URFU\TECHPROG\lab8\ex1\Release\ex1.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"X:\_URFU\TECHPROG\lab8\ex1\Release\ex1.lib" /MACHINE:X86 Release\main.obj
+         Generating code
+     1>x:\_urfu\techprog\lab8\ex1\ex1\main.cpp(179): warning C4700: uninitialized local variable 'obj' used
+         Finished generating code
+         ex1.vcxproj -> X:\_URFU\TECHPROG\lab8\ex1\Release\ex1.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"X:\_URFU\TECHPROG\lab8\ex1\Release\ex1.exe;#1" /manifest Release\ex1.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\ex1.unsuccessfulbuild".
+         Touching "Release\ex1.lastbuildstate".
+     1>Done Building Project "X:\_URFU\TECHPROG\lab8\ex1\ex1\ex1.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.27
+Time Elapsed 00:00:00.62

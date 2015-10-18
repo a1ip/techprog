@@ -24,28 +24,46 @@
 #include <iomanip> //для setw()
 #include <locale>  //для кириллицы
 #include <string>  //для работы со строками
-#include <conio.h>
 
 using namespace std;
 
+//Структура "Человек"
 struct human
 {
-	char first_name[40];		//имя
-	char last_name[40];			//фамилия
-	char middle_name[40];		//отчество
+	char first_name[40];		 //имя
+	char last_name[40];		 //фамилия
+	char middle_name[40];		 //отчество
 	unsigned int year_of_birth; //год рождения
-	unsigned short height;		//рост
-	unsigned short weight;		//вес
+	unsigned short height;		 //рост
+	unsigned short weight;		 //вес
 	
 public:
-	human() : year_of_birth(0), height(0), weight(0)
+	human() 
 	{ }
 };
 
-human setHuman();
-void getHuman(human); 
-int writeHuman(human, FILE*);
-human readHuman(FILE*);
+//ФУНКЦИИ ФОРМИРОВАНИЯ И ВЫВОДА
+
+	//Формирование массива экземпляров структуры
+	human* setHuman(int);
+	//Формирование одного экземпляра структуры
+	human setOneHuman(int a);
+	//Вывод массива экземпляров стркутуры на печать
+	int getHuman(human*, int); 
+
+//ФУНКЦИИ ОБРАБОТКИ
+
+	//Удаление экземпляра структуры по указанным свойствам "Рост" и "Вес"
+	human* delHW(human*, int&, int, int);
+	//Добавление одного экземпляра после указанного свойства "Фамилия"
+	human* addAfter(human*, int&, char[]);
+
+//ФУНКЦИИ РАБОТЫ С ДВОИЧНЫМИ ДАННЫМИ
+
+	//Запись в файл массива экземпляров структуры в форме двоичных данных
+	int writeHuman(human, FILE*);
+	//Чтение из двоичного файла данных в массив эеземпляров структуры
+	human readHuman(FILE*);
 
 int main()
 {
@@ -55,8 +73,6 @@ int main()
 	cout << "----------------------------------------------" << endl;
 
 	FILE* f;	//указатель, связанный с файлом
-
-	human arr[10];
 	
 	//Открытие файла
 	f = fopen("f.dat", "w+b");
@@ -65,47 +81,77 @@ int main()
 
 	int amount;
 
-	cout << "Введите количество человек на добавление (макс. 10): ";
+	cout << "Введите количество человек на добавление: ";
 	cin >> amount;
 
-	for (int i = 0; i < amount; i++)
-	{
-		cout << "Человек (ID = " << i << "): " << endl;
-		cout << "----------------------------------------------";
-		arr[i] = setHuman();
-	}
+	human* arr = new human [amount]; 
+	
+	//Запрашиваем данные
+	arr = setHuman(amount); 
 
+	//Запись в файл
 	for (int i = 0; i < amount; i++)
 	{
 		if (!writeHuman(arr[i], f))
 			exit(1);	
 	}
 
-	int i = 0;
+	//Сброс указателя
+	rewind(f);
 
+	int i = 0;
+	
+	//Чтение из файла в массив
 	while(!feof(f) && i < amount)
 	{
 		arr[i] = readHuman(f);
 		i++;
 	}
 
-	for (int i = 0; i < amount; i++)
-	{
-		cout << "Человек (ID = " << i << "): " << endl;
-		cout << "----------------------------------------------";
-		getHuman(arr[i]);
-	}
+	//Вывод данных из массива
+	getHuman(arr, amount);
+	
+	unsigned int height; //вес
+	unsigned int weight; //рост
 
+	cout << "----------------------------------------------" << endl;
+
+	//Запрос роста и веса
+	cout << "Укажите рост и вес человека, которого нужно удалить\n: " << endl;
+	cout << "Рост: "; cin >> height;
+	cout << "\nВес: "; cin >> weight;
+
+	arr = delHW(arr, amount, height, weight);
+	
+	cout << "----------------------------------------------" << endl;
+
+	//Вывод данных из массива
+	getHuman(arr, amount);
+
+	char last_name[40];
+
+	//Запрос фамилии
+	cout << "Укажите фамилию человека, после которого нужно добавить запись\n: " << endl;
+	cin >> last_name;
+
+	arr = addAfter(arr, amount, last_name);
+	
+	//Вывод данных из массива
+	getHuman(arr, amount);
+
+	//Закрываем файл
 	fclose(f);
-
-	getch();
 
 	return 0;
 }
 
-human setHuman()
+human setOneHuman(int i)
 {
 	human obj;
+
+	cout << "----------------------------------------------\n";
+	cout << "Человек (ID = " << i << "): " << endl;
+	cout << "----------------------------------------------\n";
 
 	cout << "\nИмя: "; cin >> obj.first_name;
 	cout << "Фамилия: "; cin >> obj.last_name;
@@ -114,19 +160,56 @@ human setHuman()
 	cout << "Рост: "; cin >> obj.height;
 	cout << "Вес: "; cin >> obj.weight;
 	cout << endl;
-
 	return obj;
 }
 
-void getHuman(human obj) 
+human* setHuman(int a)
 {
-	cout << "\nИмя: "; cout << obj.first_name;
-	cout << "\nФамилия: "; cout << obj.last_name;
-	cout << "\nОтчество: "; cout << obj.middle_name;
-	cout << "\nГод рождения: "; cout << obj.year_of_birth;
-	cout << "\nРост: "; cout << obj.height;
-	cout << "\nВес: "; cout << obj.weight;
-	cout << endl;
+	human* obj;
+
+	for (int i = 0; i < a; i++)
+	{
+		cout << "----------------------------------------------\n";
+		cout << "Человек (ID = " << i << "): " << endl;
+		cout << "----------------------------------------------\n";
+
+		cout << "\nИмя: "; cin >> obj[i].first_name;
+		cout << "Фамилия: "; cin >> obj[i].last_name;
+		cout << "Отчество: "; cin >> obj[i].middle_name;
+		cout << "Год рождения: "; cin >> obj[i].year_of_birth;
+		cout << "Рост: "; cin >> obj[i].height;
+		cout << "Вес: "; cin >> obj[i].weight;
+		cout << endl;
+	}
+	return obj;
+}
+
+int getHuman(human* obj, int a) 
+{
+	if (a == 0)
+	{
+		cout << "----------------------------------------------\n";
+		cout << "Объектов нет" << endl;
+		cout << "----------------------------------------------\n";
+		return 0;
+	}
+
+	for (int i = 0; i < a; i++)
+	{
+		cout << "----------------------------------------------\n";
+		cout << "Человек (ID = " << i << "): " << endl;
+		cout << "----------------------------------------------\n";
+
+		cout << "\nИмя: "; cout << obj[i].first_name;
+		cout << "\nФамилия: "; cout << obj[i].last_name;
+		cout << "\nОтчество: "; cout << obj[i].middle_name;
+		cout << "\nГод рождения: "; cout << obj[i].year_of_birth;
+		cout << "\nРост: "; cout << obj[i].height;
+		cout << "\nВес: "; cout << obj[i].weight;
+		cout << endl;
+	}
+
+	return 0;
 }
 
 int writeHuman(human h, FILE* f)
@@ -150,4 +233,56 @@ human readHuman(FILE* f)
 	fread(&h, sizeof(human),1,f);
 	
 	return h;
+}
+
+human* delHW(human* arr, int& a, int h, int w)
+{
+	for (int i = 0; i < a; i++)
+	{
+		if (arr[i].weight == w && arr[i].height == h)
+		{
+			for (int j = i; j < a - 1; j++)
+			{
+				arr[j] = arr[j+1];
+			}
+			//delete [] arr[a];
+			a--;
+		}
+	}
+	
+	return arr;
+}
+
+human* addAfter(human* arr, int& a, char ln[])
+{
+	human* res = new human [a+1];
+	int j = 0;
+	
+	if (a == 0)
+	{
+		res[0] = setOneHuman(0);
+		a++;
+		return res;
+	}
+
+	for (int i = 0; i < a; i++)
+	{
+		if (strcmp(arr[i].last_name, ln) == 0)
+		{
+			res[i] = setOneHuman(i);
+			a++;
+			for (int j = i + 1; j < a; j++)
+			{
+				res[j] = arr[j - 1];
+			}
+			return res;
+		}
+		else
+		{
+			res[i] = arr[i]; 
+		}
+	}
+	
+	delete &res[a+1];
+	return res;
 }

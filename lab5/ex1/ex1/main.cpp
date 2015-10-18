@@ -11,16 +11,9 @@ using namespace std;
 
 void clearScreen();
 
-<<<<<<< HEAD
 void arrPrint(int* arr, int sx, int sy);
 int dotProduct(int* arr, int A, int B);
 bool isOrthonormal(int* arr, int sx, int sy);
-=======
-void arrPrint(int* arr);
-int dotProduct(int* arr, int A, int B);
-bool isOrthonormal(int* arr);
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
-
 
 //ќпределить €вл€етс€ ли матрица ортонормированной, т. е. такой, что скал€рное произведение каждой пары 
 //различных строк равно 0, а скал€рное произведение строки самой на себ€ равно 1.
@@ -36,28 +29,19 @@ int main()
 	int a[SX][SY] =	{
 		{1,0,0},
 		{0,1,0},
-<<<<<<< HEAD
 		{0,0,1}
 	};
 
+	int* ptr = reinterpret_cast<int*>(a);
+
 	//¬ывод
-	arrPrint(a, SX, SY);
+	arrPrint(ptr, SX, SY);
 	
 	//ѕроверка на ортонормированность
-	if (isOrthonormal(a, SX, SY))
+	if (isOrthonormal(ptr, SX, SY))
 		cout << "ћатрица ортонормирована" << endl;
 	else
 		cout << "ћатрица не ортонормирована" << endl;
-=======
-		{0,0,2}
-	};
-
-	//¬ывод
-	arrPrint(&a[0][0]);
-	
-	//ѕроверка на ортонормированность
-	cout << endl << isOrthonormal(&a[0][0]) << endl;
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
 
 	return 0;
 }
@@ -67,42 +51,25 @@ int main()
 	¬ычисл€ет dotProduct - скал€рное произведение пар строк массива arr
 	¬озвращает 1 в случае, когда матрица ортонормирована.
 */
-<<<<<<< HEAD
 bool isOrthonormal(int* arr, int sx, int sy)
-=======
-bool isOrthonormal(int* arr)
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
 {
 	//–езультат, который может быть опровергнут циклом условий
 	bool res = 1;
 
 	//ƒва цикла дл€ 2 строк
-<<<<<<< HEAD
 	for (int i = 0; i < sx; i++)
 		for (int j = 0; j < sy; j++)
-=======
-	for (int i = 0; i < SX; i++)
-		for (int j = 0; j < SY; j++)
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
 		{
 			//дл€ произведений 2-х разных строк
 			if (i != j)
 				{
-<<<<<<< HEAD
 					if (dotProduct(arr, i, j) != 0)
-=======
-					if (dotProduct(&arr[0], i, j) != 0)
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
 						res = 0;	//опровержение результата
 				}
 			//дл€ произведений строки самой на себ€
 			else
 				{
-<<<<<<< HEAD
 					if (dotProduct(arr, i, j) != 1)
-=======
-					if (dotProduct(&arr[0], i, j) != 1)
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
 						res = 0;	//опровержение результата
 				}
 		}
@@ -129,11 +96,7 @@ int dotProduct(int* arr, int A, int B)
 /*
 	¬ывод массива arr на печать
 */
-<<<<<<< HEAD
 void arrPrint(int* arr, int sx, int sy) 
-=======
-void arrPrint(int* arr) 
->>>>>>> 4fb4e41a6c650045df4380379c6112c3fa6c2df2
 {
 	for (int i = 0; i < SX; i++) {
 		for (int j = 0; j < SY; j++) {
